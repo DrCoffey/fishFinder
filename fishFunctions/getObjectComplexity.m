@@ -114,12 +114,7 @@ if toPlot == 1,
     for i=1:length(LM),
         u = LM(i);
         hold on;
-        if Degree(i) > 1,
-            text(Points(u,2),Points(u,1),sprintf('%d',i));
-            %text(Points(u,2),Points(u,1),sprintf('%d-(D%d)',i,Degree(i)));
-        else
-            text(Points(u,2),Points(u,1),sprintf('%d',i));
-        end
+        text(Points(u,2),Points(u,1),sprintf('%d',i));
     end
     
     title(sprintf(' S = %2.2f   Graph size = %d - Cirles = %d Points = %d',n2,n,Cirles,ite));
@@ -145,13 +140,14 @@ for i=1:size(Points,1),
 end
 
 
-SA = sparse(A);
+%SA = sparse(A);
 
-[dist] = graphallshortestpaths(SA);
+%[dist] = graphallshortestpaths(SA);
+[dist] = distances(graph(sparse(A)));
 
 Label = zeros(size(Points,1),2);
 
-if length(LM) > 2,
+if length(LM) > 2
     Ind = zeros(1,size(Points,1));
     for i=1:size(Points,1),
         if length(find(LM == i)) > 0,
@@ -167,8 +163,12 @@ if length(LM) > 2,
         end
         [~, pos1] = min(vec);
         vec(pos1) = BIGDIST^2;
-        [~, path] = graphshortestpath(SA, i);
-        
+        % [~, path] = graphshortestpath(SA, i);
+        for k=1:height(Points)
+          [pathTmp,~] = shortestpath(graph(sparse(A)),i,k);
+          path{k}=pathTmp;
+        end
+
         for j=1:length(LM),
             if length(find(path{LM(j)} == LM(pos1))) > 0,
                 vec(j) = BIGDIST*(vec(j)+1);
@@ -185,16 +185,21 @@ if length(LM) > 2,
     ite0 = ite;
     CLM = zeros(length(LM),length(LM));
     ok = 0;
-    while sum(tempDeg) > 0,
-        sum(tempDeg);
+    while sum(tempDeg) > 0
+        % disp(sum(tempDeg));
         ok = min(ok,0);
-        for i=1:length(LM),
+        for i=1:length(LM)
             grade = min(tempDeg(tempDeg > 0));
-            if tempDeg(i) == grade,
-                [d, path] = graphshortestpath(SA, LM(i));
+            if tempDeg(i) == grade
+                %[d, path] = graphshortestpath(SA, LM(i));
+                for k=1:height(Points)
+                    [pathTmp,dTmp] = shortestpath(graph(sparse(A)),LM(i),k);
+                    path{k}=pathTmp;
+                    d(k)=dTmp;
+                end
                 [~,pos] = sort(d);
                 
-                for j=1:length(pos),
+                for j=1:length(pos)
                     k = Ind(pos(j));
                     if k > 0 && tempDeg(k) > 0 && CLM(i,k) == 0 && i ~= k,
                         ite = ite+1;
@@ -219,7 +224,7 @@ if length(LM) > 2,
             end
         end
         ok = ok-1;
-        if ok < -5,
+        if ok < -5
             %tempDeg
             break;
         end
@@ -241,7 +246,7 @@ N = 16;
 for i=1:size(L1,1)
     for j=1:size(L2,1)
         vec = find(Label(:,1) == L1(i) & Label(:,2) == L2(j));
-        if length(vec) > 1,
+        if length(vec) > 1
             W1 = W0(vec);
             W = floor(N*(W1-Rmin) / (0.00000000001+Rmax-Rmin))+1;
             Pr = zeros(1,N);

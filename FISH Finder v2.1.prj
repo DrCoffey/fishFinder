@@ -1,0 +1,97 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="2054685506" file="\\128.95.12.244\kcoffey\Neumaier Lab\fishFinder\FISH Finder v2.1.prj" location="\\128.95.12.244\kcoffey\Neumaier Lab\fishFinder" name="FISH Finder v2.1" target="target.mlapps" target-name="Package App">
+    <param.appname>FISH Finder v2.1</param.appname>
+    <param.authnamewatermark>Kevin Coffey</param.authnamewatermark>
+    <param.email />
+    <param.company />
+    <param.icon>${PROJECT_ROOT}\FISH Finder v2.1_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\FISH Finder v2.1_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\FISH Finder v2.1_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\FISH Finder v2.1_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary>Perform 2 or 3 channel colocalization analysis for 2D fluorecent in-situ hybridization images.</param.summary>
+    <param.description />
+    <param.screenshot>C:\Users\DrCoffey\AppData\Local\Temp\tpce7a9b4a_0fea_429f_aa4d_ba4fa3398468.png</param.screenshot>
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}</param.output>
+    <param.guid>58488db9-85b9-44f3-87a3-4348e8629998</param.guid>
+    <unset>
+      <param.email />
+      <param.company />
+      <param.description />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\fishFinder.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\fishFunctions\circfit.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getAIC_BIC.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getBestFitEllipse.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getBestFitEllipses.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getObjectComplexity.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getOverlapRatio.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getOX.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getSegmentation.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\getTotalPerfMultfromArea.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\initEll.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\makelinefun.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\rotateAround.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\runEllClustering.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\runEllClusteringForMerge.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\runFastMergeAlgo.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\runMainAlgo.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\runMergeFitting.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\runMergeFitting1.m</file>
+      <file>${PROJECT_ROOT}\fishFunctions\voronoi2mask.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="\\128.95.12.244\kcoffey\Neumaier Lab" name="fishFinder" optional="false">\\128.95.12.244\kcoffey\Neumaier Lab\fishFinder</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2022b</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
