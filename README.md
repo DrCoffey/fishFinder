@@ -1,4 +1,4 @@
-﻿# fishFinder v2
+﻿# fishFinder v2.1
 
 Analyze 3 and 4 channel FISH/IHC images for signal intensity and signal colocalization based on DAPI segmentation.
 
